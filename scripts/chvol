@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Prompt dmenu and specify volume
+
+volume=$(echo '1-100' | dmenu -p 'Volume:' -i -fn "xos4 Terminus:size=10" -nb '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#282828')
+
+
+if [ -z $volume ]; then
+exit
+else
+exec amixer set Master "$volume"% &
+exec notify-send "ALSA" <<< echo "Volume has been changed to $volume%" 
+fi
+

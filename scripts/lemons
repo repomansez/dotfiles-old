@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Kill lemonbar and start it again
+
+killall lemonbar && lemon
