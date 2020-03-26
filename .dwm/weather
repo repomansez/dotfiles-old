@@ -1,0 +1,18 @@
+#!/bin/sh
+
+Weather() {
+curl -s "https://api.weather.com/v3/wx/observations/current?language=en-US&apiKey=6532d6454b8aa370768e63d6ba5a832e&geocode=-22.41%2C-47.56&units=m&format=json" | \
+grep '"temperature":' | \
+cut -d ":" -f31 | \
+cut -d "," -f1
+}
+
+if [ -z $(Weather) ]; then
+	exit
+fi
+
+while :; do
+echo $(Weather) > ~/.dwm/weather.txt
+sleep 666 
+done
+
